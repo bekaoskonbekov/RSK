@@ -1,4 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:rsk1/common/widgets/my_ticket_screen.dart';
+
+import '../../generated/locale_keys.g.dart';
 
 class Radiobutton extends StatefulWidget {
   @override
@@ -16,7 +20,7 @@ class RadioButtonWidget extends State {
           contentPadding: EdgeInsets.zero,
           activeColor: Colors.blue,
           title: Text(
-            'Юридическое лицо',
+            LocaleKeys.yurlits.tr(),
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
           ),
           groupValue: radioItem,
@@ -32,7 +36,7 @@ class RadioButtonWidget extends State {
           groupValue: radioItem,
           activeColor: Colors.blue,
           title: Text(
-            'Физическое лицо',
+            LocaleKeys.fizluts.tr(),
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
           ),
           value: 'Item 2',
@@ -128,10 +132,10 @@ class RadioButtonWidget extends State {
         SizedBox(height: 20),
         ElevatedButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(context , MaterialPageRoute(builder: (context) => MyTicketScreen() ));
           },
           child: Text(
-            'Занять очередь',
+            LocaleKeys.zanyat_ochered.tr(),
             style: TextStyle(fontSize: 15, color: Colors.white),
           ),
           style: ElevatedButton.styleFrom(

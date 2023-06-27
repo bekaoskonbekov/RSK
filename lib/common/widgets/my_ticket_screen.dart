@@ -1,4 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:rsk1/features/home/views/qr_code/qr_code_screen.dart';
+
+import '../../generated/locale_keys.g.dart';
 
 class MyTicketScreen extends StatelessWidget {
   const MyTicketScreen({Key? key}) : super(key: key);
@@ -21,7 +25,7 @@ class MyTicketScreen extends StatelessWidget {
                         const SizedBox(
                           width: 40,
                         ),
-                        const Text('Мой талон ',
+                         Text(LocaleKeys.moi_talon.tr(),
                             style:
                                 TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
                       ],
@@ -41,9 +45,9 @@ class MyTicketScreen extends StatelessWidget {
                             children: [
                               Center(
                                 child: Container(
-                                  child: const Column(
+                                  child:  Column(
                                     children: [
-                                      Text('Ваш код',
+                                      Text(LocaleKeys.vash_kod.tr(),
                                           style: TextStyle(
                                             fontSize: 15,
                                           )),
@@ -56,10 +60,10 @@ class MyTicketScreen extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 40),
-                              const Column(
+                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Дата посещения',
+                                  Text(LocaleKeys.data_posesheniya.tr(),
                                       style: TextStyle(
                                           fontSize: 13, color: Colors.grey)),
                                   Text(
@@ -72,16 +76,16 @@ class MyTicketScreen extends StatelessWidget {
                                       style: TextStyle(
                                           fontSize: 13, color: Colors.grey)),
                                   Text(
-                                    'Открыть счет ',
+                                   LocaleKeys.otkryt_schet.tr(),
                                     style: TextStyle(
                                         fontSize: 15, fontWeight: FontWeight.w500),
                                   ),
                                   SizedBox(height: 20),
-                                  Text('Адрес филиала',
+                                  Text(LocaleKeys.adres_filiala.tr(),
                                       style: TextStyle(
                                           fontSize: 13, color: Colors.grey)),
                                   Text(
-                                    'г.Бишкек, уд.Фрунзе 338',
+                                    LocaleKeys.g_bishkek.tr(),
                                     style: TextStyle(
                                         fontSize: 15, fontWeight: FontWeight.w500),
                                   ),
@@ -92,8 +96,11 @@ class MyTicketScreen extends StatelessWidget {
                         )),
                     SizedBox(height: 60),
                     ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Сканировать QR-код',
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => QrCodeScreen()) );
+                      },
+                      child: Text(LocaleKeys.skanirovat_QR.tr(),
                           style: TextStyle(color: Colors.white)),
                       style: ElevatedButton.styleFrom(
                           primary: Colors.green,
@@ -109,7 +116,7 @@ class MyTicketScreen extends StatelessWidget {
                           Navigator.pop(context);
                 });
                       },
-                      child: Text('Отменить', style: TextStyle(color: Colors.red)),
+                      child: Text(LocaleKeys.otmenit.tr(), style: TextStyle(color: Colors.red)),
                       style: ElevatedButton.styleFrom(
                           primary: Colors.white,
                           shadowColor: Colors.red,
@@ -154,7 +161,7 @@ class MyTicketScreen extends StatelessWidget {
                           size: 100,
                         ),
                       ),
-                      Text('Вы отменили талон',
+                      Text(LocaleKeys.vy_otmenili_talon.tr(),
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w500))
                     ],

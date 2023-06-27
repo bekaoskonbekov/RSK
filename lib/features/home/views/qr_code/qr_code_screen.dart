@@ -1,10 +1,12 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:rsk1/generated/locale_keys.g.dart';
 
 class QrCodeScreen extends StatefulWidget {
   const QrCodeScreen({Key? key}) : super(key: key);
@@ -46,7 +48,17 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
- 
+      if (scanData.code == null) {
+       
+        return ;
+      }else{
+        _generateQRCode();
+        Navigator.pop(context, scanData.code);
+      }
+      setState(() {
+        _qrData = scanData.code;
+        _generateQRCode();
+      });
     });
   }
 
@@ -62,6 +74,8 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
               children: <Widget>[
                 Row(
                   children: [
+                    
+                    
                     IconButton(
                         onPressed: () {
                           Navigator.pop(context);
@@ -70,14 +84,14 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
                     SizedBox(
                       width: 40,
                     ),
-                    Text('Сканировать QR',
+                    Text(LocaleKeys.skan_QR.tr(),
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w500)),
                   ],
                 ),
                 SizedBox(height: 20),
                 Text(
-                    'Для осуществления операции поднесите сканер к QR-коду или загрузите из галереи',
+                    LocaleKeys.iz_galerei_zagruzit.tr(),
                     style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w500,
@@ -102,6 +116,14 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
                         cutOutSize: 300,
                       ),
                       overlayMargin: EdgeInsets.zero,
+                      onPermissionSet: (ctrl, p) {
+                        if (!p) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Нет доступа к камере')));
+                              Navigator.pop(context);
+                        }
+                      }
+                        
                     ),
                   ),
                 )),
@@ -123,7 +145,7 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
                 SizedBox(),
                 const SizedBox(height: 80),
                 ElevatedButton(
-                  child: Text('Из галереии',
+                  child: Text(LocaleKeys.iz_galery.tr(),
                       style: TextStyle(color: Colors.white)),
                   onPressed: pickImage,
                   style: ElevatedButton.styleFrom(
@@ -134,7 +156,7 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
                 ),
                 const SizedBox(height: 10),
                 TextButton(
-                  child: Text('Показать мой QR',
+                  child: Text(LocaleKeys.skan_QR.tr(),
                       style: TextStyle(color: Colors.black)),
                   onPressed: _generateQRCode,
                 )

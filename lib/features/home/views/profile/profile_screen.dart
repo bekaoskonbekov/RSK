@@ -1,9 +1,12 @@
-import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:rsk1/features/home/common/height_container_widget.dart';
+import 'package:rsk1/common/widgets/height_container_widget.dart';
+import 'package:rsk1/generated/locale_keys.g.dart';
 
-import 'list_of_branches_screen.dart';
-import 'my_ticket_screen.dart';
+import '../../../../common/widgets/list_of_branches_screen.dart';
+import '../../../../common/widgets/my_ticket_screen.dart';
+
+
 
 
 class ProfileScreen extends StatelessWidget {
@@ -18,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Ещё',
+              Text(LocaleKeys.eshe.tr(),
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
               SizedBox(
                 height: 20,
@@ -65,11 +68,11 @@ class ProfileScreen extends StatelessWidget {
                   height: 140,
                   child: Column(
                     children: [
-                      TextAndIconWidget(icons: Icons.inventory_2_outlined, text: 'Банкоматы', onTapped: () { 
+                      TextAndIconWidget(icons: Icons.inventory_2_outlined, text: LocaleKeys.bankomaty.tr(), onTapped: () { 
                         Navigator.push(context, MaterialPageRoute(builder: (context) => ListOfBranchesScreen()));
                        },),
-                      TextAndIconWidget(icons: Icons.maps_home_work_outlined, text: 'Офисы', onTapped: () {  },),
-                      TextAndIconWidget(icons: Icons.confirmation_num_outlined, text: 'Мои талоны', onTapped: () {
+                      TextAndIconWidget(icons: Icons.maps_home_work_outlined, text: LocaleKeys.ofisy.tr(), onTapped: () {  },),
+                      TextAndIconWidget(icons: Icons.confirmation_num_outlined, text: LocaleKeys.moi_talony.tr(), onTapped: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => MyTicketScreen()));
                         },),
                     ],
@@ -82,9 +85,9 @@ class ProfileScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       TextAndIconWidget(
-                          icons: Icons.phone_outlined, text: 'Связь с банком', onTapped: () {  },),
+                          icons: Icons.phone_outlined, text: LocaleKeys.svyaz_s_bankom.tr(), onTapped: () {  },),
                       TextAndIconWidget(
-                          icons: Icons.help_outline, text: 'Вопрос и ответ', onTapped: () {  },),
+                          icons: Icons.help_outline, text: LocaleKeys.vopros_otvet.tr(), onTapped: () {  },),
                     ],
                   )),
               SizedBox(
@@ -93,7 +96,7 @@ class ProfileScreen extends StatelessWidget {
               HeightContainerWidget(
                 height: 46,
                 child: TextAndIconWidget(
-                    icons: Icons.handshake_outlined, text: 'Политика условий', onTapped: () {  },),
+                    icons: Icons.handshake_outlined, text: LocaleKeys.politika_usloviy.tr(), onTapped: () {  },),
               ),
               SizedBox(
                 height: 20,
@@ -103,9 +106,9 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     TextAndIconWidget(
-                        icons: Icons.password_outlined, text: 'Сменить пароль', onTapped: () {  },),
-                    TextAndIconWidget(icons: Icons.language_outlined, text: 'Сменить язык', onTapped: () {  },),
-                    TextAndIconWidget(icons: Icons.screen_rotation_alt_outlined, text: 'Сменить режим', onTapped: () {  },),
+                        icons: Icons.password_outlined, text: LocaleKeys.smenit_parol.tr(), onTapped: () {  },),
+                    TextAndIconWidget(icons: Icons.language_outlined, text: LocaleKeys.smenit_yazyk.tr(), onTapped: () {  },),
+                    TextAndIconWidget(icons: Icons.screen_rotation_alt_outlined, text: LocaleKeys.smenit_regim.tr(), onTapped: () {  },),
                   ],
                 ),
               ),
@@ -115,7 +118,7 @@ class ProfileScreen extends StatelessWidget {
                HeightContainerWidget(
                 height: 46,
                 child: TextAndIconWidget(
-                    icons: Icons.login_outlined, text: 'Выйти', onTapped: () {  },),
+                    icons: Icons.login_outlined, text: LocaleKeys.vyiti.tr(), onTapped: () {  },),
               ),
             ],
           ),

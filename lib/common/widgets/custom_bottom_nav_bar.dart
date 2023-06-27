@@ -1,13 +1,15 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 
-import '../views/history/history_screen.dart';
-import '../views/home/home_screen.dart';
-import '../views/payment/payment_screen.dart';
-import '../views/profile/profile_screen.dart';
-import '../views/qr_code/qr_code_screen.dart';
+import '../../features/home/views/history/history_screen.dart';
+import '../../features/home/views/home/home_screen.dart';
+import '../../features/home/views/payment/payment_screen.dart';
+import '../../features/home/views/profile/profile_screen.dart';
+import '../../features/home/views/qr_code/qr_code_screen.dart';
+import '../../generated/locale_keys.g.dart';
 
 class CustomBottomBar extends StatefulWidget {
   const CustomBottomBar({
@@ -33,11 +35,11 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
         PersistentBottomNavBarItem(
             icon: const Icon(Icons.roofing_outlined),
             
-            title: "Главная",
+            title: LocaleKeys.glavnaya.tr(),
             inactiveColorPrimary: Colors.grey),
         PersistentBottomNavBarItem(
             icon: const Icon(Icons.local_offer_outlined),
-            title: "Платежи",
+            title: LocaleKeys.plateji.tr(),
             inactiveColorPrimary: Colors.grey),
         PersistentBottomNavBarItem(
             activeColorPrimary: Colors.white,
@@ -60,11 +62,11 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
             ),
         PersistentBottomNavBarItem(
             icon:  Icon(Icons.schedule_outlined),
-            title: "История",
+            title:LocaleKeys.istoria.tr(),
             inactiveColorPrimary: Colors.grey),
         PersistentBottomNavBarItem(
             icon: const Icon(Icons.bubble_chart_outlined),
-            title: "Ещё",
+            title: LocaleKeys.eshe.tr(),
             
             inactiveColorPrimary: Colors.grey),
       ];

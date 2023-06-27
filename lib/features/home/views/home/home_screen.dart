@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../common/card_container_widget.dart';
-import '../../common/row_button_container_widget.dart';
+import '../../../../common/widgets/card_container_widget.dart';
+import '../../../../common/widgets/row_button_container_widget.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,13 +21,13 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Новости',
+                    LocaleKeys.novosti.tr(),
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
                   ),
                   Icon(Icons.notifications)
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Container(
@@ -34,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                   cardNumber: "3546 7532 XXXX 9742",
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 57,
               ),
               Row(
@@ -56,17 +58,17 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Text(
-                'Последние транзакции ',
+                LocaleKeys.poslednie_tranzaksii.tr(),
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              CardContainerWidget(
+              const CardContainerWidget(
                 cardText: 'Visa Income',
                 images: 'assets/visa_icon.png',
                 numText: '+2400',

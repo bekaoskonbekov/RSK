@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rsk1/features/home/views/history/widgets/date_time_widget.dart';
-import 'package:rsk1/features/home/views/history/widgets/radio_buttton_widget.dart';
+import 'package:rsk1/common/widgets/date_time_widget.dart';
+import 'package:rsk1/common/widgets/radio_buttton_widget.dart';
+import 'package:rsk1/generated/locale_keys.g.dart';
 
-import '../../common/height_container_widget.dart';
+import '../../../../common/widgets/height_container_widget.dart';
 
 
 class HistoryScreen extends StatefulWidget {
@@ -35,7 +37,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     width: 40,
                   ),
                   Text(
-                    'Обслуживание физических \n лиц',
+                    LocaleKeys.obslujivanie_fiz.tr(),
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                     maxLines: 2,
                   ),
@@ -51,7 +53,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Выберите услугу'),
+                        Text(LocaleKeys.vyboruslug.tr(),),
                         IconButton(
                             onPressed: () {
                               _showServicesDialog(context);
@@ -67,7 +69,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     padding: const EdgeInsets.only(left: 15, right: 15),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text('Дата посещение'), DateTimeWidget()],
+                      children: [Text(LocaleKeys.data_posesheniya.tr(),), DateTimeWidget()],
                     ),
                   )),
                   SizedBox(height: 440),
@@ -76,7 +78,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   Navigator.pop(context);
                 },
                 child: Text(
-                  'Занять очередь',
+                 LocaleKeys.zanyat_ochered.tr(),
                   style: TextStyle(fontSize: 15, color: Colors.white),
                 ),
                 style: ElevatedButton.styleFrom(
@@ -110,7 +112,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Выберите услугу'),
+                        Text(LocaleKeys.vyboruslug.tr(),),
                         IconButton(
                             onPressed: () {
                               Navigator.pop(context);
@@ -129,7 +131,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Депозиты'),
+                              Text(LocaleKeys.depozity.tr(),),
                               IconButton(
                                   onPressed: () {
                                     _showDateAndTimeDialog(context);
@@ -151,7 +153,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Выберите услугу'),
+                              Text(LocaleKeys.vyboruslug.tr(),),
                               IconButton(
                                   onPressed: () {},
                                   icon: Icon(CupertinoIcons.chevron_right))
@@ -171,7 +173,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Выберите услугу'),
+                              Text(LocaleKeys.vyboruslug.tr(),),
                               IconButton(
                                   onPressed: () {},
                                   icon: Icon(CupertinoIcons.chevron_right))
@@ -191,7 +193,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Выберите услугу'),
+                              Text(LocaleKeys.vyboruslug.tr(),),
                               IconButton(
                                   onPressed: () {},
                                   icon: Icon(CupertinoIcons.chevron_right))
@@ -211,7 +213,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Выберите услугу'),
+                              Text(LocaleKeys.vyboruslug.tr(),),
                               IconButton(
                                   onPressed: () {},
                                   icon: Icon(CupertinoIcons.chevron_right))
@@ -255,7 +257,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'г. Бишкек, ул. Фрунзе, 338',
+                            LocaleKeys.g_bishkek.tr(),
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w500),
                           ),
@@ -275,7 +277,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               SizedBox(
                                 width: 8,
                               ),
-                              Text('Открыто '),
+                              Text(LocaleKeys.otkryto.tr(),),
                             ],
                           ),
                           Radiobutton(),
