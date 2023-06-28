@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:rsk1/common/widgets/height_container_widget.dart';
 import 'package:rsk1/generated/locale_keys.g.dart';
 
-import '../../../../common/widgets/list_of_branches_screen.dart';
-import '../../../../common/widgets/my_ticket_screen.dart';
+import 'list_of_branches_screen.dart';
+import 'my_ticket_screen.dart';
 
 
 

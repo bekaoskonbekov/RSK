@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:rsk1/features/home/views/profile/list_of_branches_screen.dart';
 import 'package:rsk1/features/home/views/qr_code/qr_code_screen.dart';
 
-import '../../generated/locale_keys.g.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class MyTicketScreen extends StatelessWidget {
   const MyTicketScreen({Key? key}) : super(key: key);
@@ -153,7 +154,7 @@ class MyTicketScreen extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.pop(context);
+                          Navigator.push(context, MaterialPageRoute(builder: (_)=> ListOfBranchesScreen()));
                         },
                         child: Icon(
                           Icons.highlight_off_outlined,

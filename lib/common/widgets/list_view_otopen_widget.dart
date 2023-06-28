@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:rsk1/features/home/views/profile/atm_screen.dart';
 
 import '../../features/home/views/history/history_screen.dart';
 import '../../generated/locale_keys.g.dart';
@@ -21,7 +22,7 @@ class ListViewOpenWidget extends StatelessWidget {
           child: GestureDetector(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HistoryScreen()));
+                  MaterialPageRoute(builder: (context) => ATMScreen()));
             },
             child: HeightContainerWidget(
                 height: 80,

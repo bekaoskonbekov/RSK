@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:rsk1/common/widgets/my_ticket_screen.dart';
+import 'package:rsk1/features/home/views/profile/atm_screen.dart';
 
 import '../../generated/locale_keys.g.dart';
 
@@ -132,7 +132,7 @@ class RadioButtonWidget extends State {
         SizedBox(height: 20),
         ElevatedButton(
           onPressed: () {
-            Navigator.push(context , MaterialPageRoute(builder: (context) => MyTicketScreen() ));
+            Navigator.push(context , MaterialPageRoute(builder: (context) => ATMScreen() ));
           },
           child: Text(
             LocaleKeys.zanyat_ochered.tr(),

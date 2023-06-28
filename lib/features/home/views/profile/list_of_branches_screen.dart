@@ -1,12 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rsk1/common/widgets/height_container_widget.dart';
 import 'package:rsk1/common/widgets/list_view_electronic_widget.dart';
 import 'package:rsk1/common/widgets/list_view_otopen_widget.dart';
 
-import '../../generated/locale_keys.g.dart';
-import 'height_container_widget.dart';
-import '../../features/home/views/history/history_screen.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class ListOfBranchesScreen extends StatefulWidget {
   const ListOfBranchesScreen({Key? key}) : super(key: key);
@@ -58,6 +57,24 @@ class _ListOfBranchesScreenState extends State<ListOfBranchesScreen> {
                     ),
                     DropdownButton<String>(
                       value: currentItem,
+                      selectedItemBuilder: (context) {
+                        return list.map<Widget>((String item) {
+                          return Container(
+                            width: 180,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white),
+                            child: Center(
+                              child: Text(
+                                item,
+                                style: const TextStyle(color: Colors.black),
+                              ),
+                            ),
+                          );
+                        }).toList();
+                      },
+                      borderRadius: BorderRadius.circular(10),
                       padding: EdgeInsets.zero,
                       elevation: 0,
                       icon: const Icon(
@@ -75,10 +92,26 @@ class _ListOfBranchesScreenState extends State<ListOfBranchesScreen> {
                             value: value,
                             onTap: () {},
                             alignment: Alignment.center,
-                            child: Center(
-                              child: Text(
-                                value,
-                                style: TextStyle(color: Colors.black),
+                            child: Container(
+                              width: 250,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 0,
+                                      blurRadius: 7,
+                                      offset: const Offset(0, 3),
+                                    )
+                                  ],
+                                  color: Colors.white),
+                              child: Center(
+                                child: Text(
+                                  value,
+                                  style: TextStyle(color: Colors.black),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                             ));
                       }).toList(),
