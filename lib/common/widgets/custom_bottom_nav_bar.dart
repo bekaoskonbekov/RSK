@@ -27,7 +27,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
         const HomeScreen(),
         const PaymentScreen(),
          const QrCodeScreen(),
-         HistoryScreen(),
+         AttendanceScreen(),
         const ProfileScreen(),
       ];
 

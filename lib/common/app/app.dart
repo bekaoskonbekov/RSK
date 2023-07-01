@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:rsk1/common/widgets/custom_bottom_nav_bar.dart';
 import 'package:rsk1/features/auth/views/splash_screen.dart';
-import 'package:rsk1/features/home/views/history/history_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
