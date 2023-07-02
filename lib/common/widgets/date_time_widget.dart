@@ -81,7 +81,7 @@ String _chosenDateTime = DateFormat().format(DateTime.now());
                     _chosenDateTime != null
                         ? _chosenDateTime.toString()
                         : 'No date',
-                    style: TextStyle(color: Colors.blue, fontSize: 14, fontWeight: FontWeight.w600)),
+                    style: const TextStyle(color: Colors.blue, fontSize: 14, fontWeight: FontWeight.w600)),
               ),
             ),
           ),

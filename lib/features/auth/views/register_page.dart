@@ -1,20 +1,22 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:rsk1/features/auth/providers/auth_provider.dart';
 import 'package:rsk1/features/auth/views/send_pin_code_screen.dart';
 import 'package:rsk1/generated/locale_keys.g.dart';
-
-import '../../../common/widgets/custom_bottom_nav_bar.dart';
 import '../../../common/widgets/custom_textfield.dart';
+import '../services/auth_service.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+class RegisterPage extends ConsumerStatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+
+class _RegisterPageState extends ConsumerState<RegisterPage> {
   TextEditingController _phoneController = TextEditingController();
   final _signInFormKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
@@ -28,8 +30,10 @@ class _RegisterPageState extends State<RegisterPage> {
     _phoneController.dispose();
   }
 
+
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -40,7 +44,8 @@ class _RegisterPageState extends State<RegisterPage> {
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           ),
         ),
-        body: Padding(
+        body: 
+        Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
@@ -112,22 +117,17 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: Column(
                         children: [
                           CustomTextField(
-                            controller: _emailController,
+                            controller: ref.watch(loginRiverpod).email,
                             hintText: 'Логин',
                           ),
                           const SizedBox(height: 10),
                           CustomTextField(
-                            controller: _passwordController,
+                            controller: ref.watch(loginRiverpod).password,
                             hintText: 'Password',
                           ),
                           const SizedBox(height: 40),
                           ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => CustomBottomBar()));
-                            },
+                            onPressed: ref.read(loginRiverpod).fetch,
                             child: Text('Войти',
                                 style: TextStyle(
                                     fontSize: 18, color: Colors.white)),
@@ -155,7 +155,11 @@ class _RegisterPageState extends State<RegisterPage> {
             ],
           ),
         ),
-      ),
+      )
     );
   }
 }
+
+
+
+ 

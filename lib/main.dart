@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rsk1/generated/codegen_loader.g.dart';
 import 'common/app/app.dart';
 
@@ -15,5 +16,5 @@ void main() async {
       assetLoader: const CodegenLoader(
 
       ),
-    child: const MyApp()));
+    child: ProviderScope(child: const MyApp())));
 }
