@@ -6,7 +6,10 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:rsk1/common/widgets/successfully%20booked%20a%20queue.dart';
 import 'package:rsk1/generated/locale_keys.g.dart';
+
+import '../../../../routes/router.dart';
 
 class QrCodeScreen extends StatefulWidget {
   const QrCodeScreen({Key? key}) : super(key: key);
@@ -40,6 +43,7 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
     });
   }
 
+  @override
   void dispose() {
     controller?.dispose();
     super.dispose();
@@ -80,23 +84,23 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(Icons.arrow_back_ios)),
-                    SizedBox(
+                        icon: const Icon(Icons.arrow_back_ios)),
+                    const SizedBox(
                       width: 40,
                     ),
                     Text(LocaleKeys.skan_QR.tr(),
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w500)),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
                     LocaleKeys.iz_galerei_zagruzit.tr(),
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w500,
                         color: Colors.grey)),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
                 Center(
                     child: Container(
                   height: 343,
@@ -107,7 +111,7 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
                       cameraFacing: CameraFacing.back,
                       key: qrKey,
                       onQRViewCreated: _onQRViewCreated ,
-                      formatsAllowed: [BarcodeFormat.qrcode],
+                      formatsAllowed: const [BarcodeFormat.qrcode],
                       overlay: QrScannerOverlayShape(
                         borderRadius: 10,
                         borderColor: Colors.red,
@@ -119,7 +123,7 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
                       onPermissionSet: (ctrl, p) {
                         if (!p) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('Нет доступа к камере')));
+                              const SnackBar(content: Text('Нет доступа к камере')));
                               Navigator.pop(context);
                         }
                       }
@@ -141,12 +145,12 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
                       gapless: false,
                       backgroundColor: Colors.white,
                       embeddedImageStyle:
-                          QrEmbeddedImageStyle(size: Size(80, 80))),
-                SizedBox(),
+                          const QrEmbeddedImageStyle(size: Size(80, 80))),
+                const SizedBox(),
                 const SizedBox(height: 80),
                 ElevatedButton(
                   child: Text(LocaleKeys.iz_galery.tr(),
-                      style: TextStyle(color: Colors.white)),
+                      style: const TextStyle(color: Colors.white)),
                   onPressed: pickImage,
                   style: ElevatedButton.styleFrom(
                       primary: Colors.blue,
@@ -158,7 +162,9 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
                 TextButton(
                   child: Text(LocaleKeys.skan_QR.tr(),
                       style: TextStyle(color: Colors.black)),
-                  onPressed: _generateQRCode,
+                  onPressed: (){
+                     Routes.instance.push(widget: SuccessfullyBookedAQueue(), context: context);
+                  },
                 )
               ],
             ),

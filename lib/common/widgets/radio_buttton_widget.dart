@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:rsk1/features/home/views/profile/atm_screen.dart';
+import 'package:rsk1/features/home/views/qr_code/qr_code_screen.dart';
 
 import '../../generated/locale_keys.g.dart';
+import '../../routes/router.dart';
 
 class Radiobutton extends StatefulWidget {
   @override
@@ -55,9 +57,9 @@ class RadioButtonWidget extends State {
                       height: 70,
                       width: 50,
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 214, 214, 214),
+                          color: const Color.fromARGB(255, 214, 214, 214),
                           borderRadius: BorderRadius.circular(10)),
-                      child: Column(
+                      child: const Column(
                         children: [
                           Text(
                             'Пн',
@@ -70,9 +72,9 @@ class RadioButtonWidget extends State {
                       height: 70,
                       width: 50,
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 214, 214, 214),
+                          color: const Color.fromARGB(255, 214, 214, 214),
                           borderRadius: BorderRadius.circular(10)),
-                      child: Column(
+                      child: const Column(
                         children: [
                           Text(
                             'Вт',
@@ -132,7 +134,7 @@ class RadioButtonWidget extends State {
         SizedBox(height: 20),
         ElevatedButton(
           onPressed: () {
-            Navigator.push(context , MaterialPageRoute(builder: (context) => ATMScreen() ));
+            Routes.instance.push(widget: QrCodeScreen(), context: context);
           },
           child: Text(
             LocaleKeys.zanyat_ochered.tr(),

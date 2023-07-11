@@ -2,17 +2,22 @@ import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:rsk1/features/home/views/home/home_screen.dart';
+import 'package:rsk1/features/home/views/profile/profile_screen.dart';
 import 'package:rsk1/generated/locale_keys.g.dart';
+import 'package:rsk1/routes/router.dart';
 
 class AttendanceScreen extends StatefulWidget {
-  AttendanceScreen();
+  const AttendanceScreen();
+
 
   @override
   _AttendanceScreenState createState() => _AttendanceScreenState();
+
 }
 
 class _AttendanceScreenState extends State<AttendanceScreen> {
-  static var countdownDuration1 = Duration(minutes: 10);
+  static var countdownDuration1 = const Duration(minutes: 10);
   Duration duration1 = const Duration();
   Timer? timer;
   Timer? timer1;
@@ -21,8 +26,8 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
 
   @override
   void initState() {
-    var mints1;
-    var secs1;
+    int mints1;
+    int secs1;
     mints1 = int.parse("30");
     secs1 = int.parse("00");
     countdownDuration1 = Duration(minutes: mints1, seconds: secs1);
@@ -42,7 +47,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
             child: Center(
               child: Column(
                 children: [
-                  SizedBox(height: 100),
+                  const SizedBox(height: 100),
                   Container(
                     width: 353,
                     height: 394,
@@ -97,7 +102,9 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                     ),
                   ),
                   const SizedBox(height: 80,),
-                  ElevatedButton(onPressed: (){},
+                  ElevatedButton(onPressed: (){
+                    Routes.instance.pushAndRemoveUntil(widget: widget, context: context);
+                  },
                   style: ButtonStyle(
                     
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.white),

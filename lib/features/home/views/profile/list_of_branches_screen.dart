@@ -51,8 +51,8 @@ class _ListOfBranchesScreenState extends State<ListOfBranchesScreen> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(Icons.arrow_back_ios)),
-                    SizedBox(
+                        icon: const Icon(Icons.arrow_back_ios)),
+                    const SizedBox(
                       width: 40,
                     ),
                     DropdownButton<String>(
@@ -118,7 +118,7 @@ class _ListOfBranchesScreenState extends State<ListOfBranchesScreen> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TabBar(
@@ -138,10 +138,10 @@ class _ListOfBranchesScreenState extends State<ListOfBranchesScreen> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Expanded(
+                const Expanded(
                   child: TabBarView(
                     children: [
                       ListViewOpenWidget(),

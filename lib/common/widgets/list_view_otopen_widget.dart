@@ -4,6 +4,7 @@ import 'package:rsk1/features/home/views/profile/atm_screen.dart';
 
  
 import '../../generated/locale_keys.g.dart';
+import '../../routes/router.dart';
 import 'height_container_widget.dart';
 
 class ListViewOpenWidget extends StatelessWidget {
@@ -21,8 +22,7 @@ class ListViewOpenWidget extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 20),
           child: GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ATMScreen()));
+              Routes.instance.push(widget: ATMScreen(), context: context);
             },
             child: HeightContainerWidget(
                 height: 80,
@@ -36,10 +36,10 @@ class ListViewOpenWidget extends StatelessWidget {
                         children: [
                           Text(
                             LocaleKeys.g_bishkek.tr(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w500),
                           ),
-                          Text(
+                          const Text(
                             'Центр денежных переводов',
                             style: TextStyle(fontSize: 14, color: Colors.grey),
                           ),
@@ -53,7 +53,7 @@ class ListViewOpenWidget extends StatelessWidget {
                                     color: Colors.green,
                                     borderRadius: BorderRadius.circular(50)),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
                               Text(LocaleKeys.otkryto.tr()),
@@ -61,7 +61,7 @@ class ListViewOpenWidget extends StatelessWidget {
                           )
                         ],
                       ),
-                      Icon(Icons.arrow_forward_ios)
+                      const Icon(Icons.arrow_forward_ios)
                     ],
                   ),
                 )),

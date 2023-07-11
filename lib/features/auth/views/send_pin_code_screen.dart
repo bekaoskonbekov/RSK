@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:rsk1/common/widgets/custom_bottom_nav_bar.dart';
 
+import '../../../routes/router.dart';
+
 class SendPinCodeScreen extends StatelessWidget {
   const SendPinCodeScreen({super.key});
 
@@ -15,17 +17,17 @@ class SendPinCodeScreen extends StatelessWidget {
           padding: const EdgeInsets.all(30.0),
           child: Column(
             children: [
-              Text(
+              const Text(
                 'Код из СМС',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              Text(
+              const Text(
                 'Введите 4-значный код, который мы \n отправили по номеру ',
                 style: TextStyle(fontSize: 15, color: Colors.grey),
                 textAlign: TextAlign.center,
               ),
-              Text('+000000000', style: TextStyle(color: Colors.blue),),
-              SizedBox(
+              const Text('+000000000', style: TextStyle(color: Colors.blue),),
+              const SizedBox(
                 height: 50,
               ),
               Container(
@@ -53,20 +55,20 @@ class SendPinCodeScreen extends StatelessWidget {
                 },
                 onChanged: (String value) {},
               )),
-              SizedBox(height: 60),
-              Row(
+              const SizedBox(height: 60),
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('Отправить код ещё раз через'),
                   Text(' 01:23 ', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),), 
                 ],
               ),
-              SizedBox(height: 80),
+              const SizedBox(height: 80),
                       ElevatedButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => CustomBottomBar()));
+                            Routes.instance.push(widget: CustomBottomBar(), context: context);
                           },
-                          child: Text('Войти',
+                          child:  const Text('Войти',
                               style:
                                   TextStyle(fontSize: 18, color: Colors.white)),
                           style: ElevatedButton.styleFrom(
@@ -74,7 +76,7 @@ class SendPinCodeScreen extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              minimumSize: Size(double.infinity, 50)),
+                              minimumSize: const Size(double.infinity, 50)),
                         ),
             ],
           ),

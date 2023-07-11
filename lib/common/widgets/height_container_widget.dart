@@ -53,8 +53,8 @@ class TextAndIconWidget extends StatelessWidget {
             child: Row(
               children: [
                 Icon(icons, size: 24,),
-                SizedBox(width: 8,),
-                Text(text,style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),)
+                const SizedBox(width: 8,),
+                Text(text,style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18),)
               ],
             ),
           ),

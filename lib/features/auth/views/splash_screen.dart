@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:rsk1/features/auth/views/welcome.dart';
 
+import '../../../routes/router.dart';
+
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _SplashScreenState createState() => _SplashScreenState();
 }
 
@@ -11,17 +16,14 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomePage()),
-      );
+    Future.delayed(const Duration(seconds: 2), () {
+       Routes.instance.push(widget: HomePage(), context: context);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Padding(
           padding:  EdgeInsets.all(20),

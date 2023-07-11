@@ -1,14 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:rsk1/common/widgets/height_container_widget.dart';
+import 'package:rsk1/features/home/views/profile/no_talon_screen.dart';
 import 'package:rsk1/generated/locale_keys.g.dart';
 
+import '../../../../routes/router.dart';
 import 'list_of_branches_screen.dart';
-import 'my_ticket_screen.dart';
-
-
-
-
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -23,19 +20,22 @@ class ProfileScreen extends StatelessWidget {
             children: [
               Text(LocaleKeys.eshe.tr(),
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
                 height: 95,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    color: Colors.blue, borderRadius: BorderRadius.circular(10)),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Padding(
+                  padding: EdgeInsets.all(20),
                   child: Row(
                     children: [
                       CircleAvatar(
+                        backgroundImage: AssetImage('assets/profile.png', ),
+                        
                         radius: 50,
                       ),
                       Column(
@@ -61,23 +61,40 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               HeightContainerWidget(
                   height: 140,
                   child: Column(
                     children: [
-                      TextAndIconWidget(icons: Icons.inventory_2_outlined, text: LocaleKeys.bankomaty.tr(), onTapped: () { 
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ListOfBranchesScreen()));
-                       },),
-                      TextAndIconWidget(icons: Icons.maps_home_work_outlined, text: LocaleKeys.ofisy.tr(), onTapped: () {  },),
-                      TextAndIconWidget(icons: Icons.confirmation_num_outlined, text: LocaleKeys.moi_talony.tr(), onTapped: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => MyTicketScreen()));
-                        },),
+                      TextAndIconWidget(
+                        icons: Icons.inventory_2_outlined,
+                        text: LocaleKeys.bankomaty.tr(),
+                        onTapped: () {},
+                      ),
+                      TextAndIconWidget(
+                        icons: Icons.maps_home_work_outlined,
+                        text: LocaleKeys.ofisy.tr(),
+                        onTapped: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ListOfBranchesScreen()));
+                        },
+                      ),
+                      TextAndIconWidget(
+                        icons: Icons.confirmation_num_outlined,
+                        text: LocaleKeys.moi_talony.tr(),
+                        onTapped: () {
+                          Routes.instance
+                              .push(widget: NoTalonScreen(), context: context);
+                        },
+                      ),
                     ],
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               HeightContainerWidget(
@@ -85,20 +102,29 @@ class ProfileScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       TextAndIconWidget(
-                          icons: Icons.phone_outlined, text: LocaleKeys.svyaz_s_bankom.tr(), onTapped: () {  },),
+                        icons: Icons.phone_outlined,
+                        text: LocaleKeys.svyaz_s_bankom.tr(),
+                        onTapped: () {},
+                      ),
                       TextAndIconWidget(
-                          icons: Icons.help_outline, text: LocaleKeys.vopros_otvet.tr(), onTapped: () {  },),
+                        icons: Icons.help_outline,
+                        text: LocaleKeys.vopros_otvet.tr(),
+                        onTapped: () {},
+                      ),
                     ],
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               HeightContainerWidget(
                 height: 46,
                 child: TextAndIconWidget(
-                    icons: Icons.handshake_outlined, text: LocaleKeys.politika_usloviy.tr(), onTapped: () {  },),
+                  icons: Icons.handshake_outlined,
+                  text: LocaleKeys.politika_usloviy.tr(),
+                  onTapped: () {},
+                ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               HeightContainerWidget(
@@ -106,19 +132,33 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     TextAndIconWidget(
-                        icons: Icons.password_outlined, text: LocaleKeys.smenit_parol.tr(), onTapped: () {  },),
-                    TextAndIconWidget(icons: Icons.language_outlined, text: LocaleKeys.smenit_yazyk.tr(), onTapped: () {  },),
-                    TextAndIconWidget(icons: Icons.screen_rotation_alt_outlined, text: LocaleKeys.smenit_regim.tr(), onTapped: () {  },),
+                      icons: Icons.password_outlined,
+                      text: LocaleKeys.smenit_parol.tr(),
+                      onTapped: () {},
+                    ),
+                    TextAndIconWidget(
+                      icons: Icons.language_outlined,
+                      text: LocaleKeys.smenit_yazyk.tr(),
+                      onTapped: () {},
+                    ),
+                    TextAndIconWidget(
+                      icons: Icons.screen_rotation_alt_outlined,
+                      text: LocaleKeys.smenit_regim.tr(),
+                      onTapped: () {},
+                    ),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-               HeightContainerWidget(
+              HeightContainerWidget(
                 height: 46,
                 child: TextAndIconWidget(
-                    icons: Icons.login_outlined, text: LocaleKeys.vyiti.tr(), onTapped: () {  },),
+                  icons: Icons.login_outlined,
+                  text: LocaleKeys.vyiti.tr(),
+                  onTapped: () {},
+                ),
               ),
             ],
           ),

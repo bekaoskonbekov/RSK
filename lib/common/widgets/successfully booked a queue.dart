@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:rsk1/features/home/views/profile/my_ticket_screen.dart';
 
 import '../../generated/locale_keys.g.dart';
+import '../../routes/router.dart';
 
 class SuccessfullyBookedAQueue extends StatelessWidget {
   const SuccessfullyBookedAQueue({Key? key}) : super(key: key);
@@ -28,8 +30,10 @@ class SuccessfullyBookedAQueue extends StatelessWidget {
             ),
             const SizedBox(height: 200),
             ElevatedButton(
-              onPressed: () {},
-              child:  Text(LocaleKeys.podoidite_okno.tr(),
+              onPressed: () {
+                Routes.instance.push(widget: MyTicketScreen(), context: context);
+              },
+              child:  Text(LocaleKeys.posmotret.tr(),
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,

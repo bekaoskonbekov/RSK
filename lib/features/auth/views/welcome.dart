@@ -1,4 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:rsk1/common/widgets/custom_bottom_nav_bar.dart';
 import 'package:rsk1/features/auth/views/register_page.dart';
 import '../../../generated/locale_keys.g.dart';
+import '../../../routes/router.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -20,7 +20,6 @@ class _HomePageState extends State<HomePage> {
   List<String> list = [
     'Русский',
     'English',
-    'Кыргызча',
   ];
   String currentItem = "";
   @override
@@ -37,7 +36,7 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         backgroundColor: const Color(0xffFFFFFF),
         actions: <Widget>[
-           Icon(
+           const Icon(
               Icons.language,
               color: Color(0xff000000),
               size: 20,
@@ -104,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                     child: Center(
                       child: Text(
                         value,
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -119,7 +118,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image(
+              const Image(
                 image: AssetImage('assets/Logo 1.png'),
               ),
               const SizedBox(
@@ -127,7 +126,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Text(
                 LocaleKeys.dobro_pojalovat.tr(),
-                style: TextStyle(
+                style: const TextStyle(
                   color: Color(0xff000000),
                   fontSize: 20,
                   fontWeight: FontWeight.w400,
@@ -138,21 +137,8 @@ class _HomePageState extends State<HomePage> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CustomBottomBar(),
-                    ),
-                  );
+                  Routes.instance.push(widget: CustomBottomBar(), context: context);
                 },
-                child: Text(
-                  LocaleKeys.vxod.tr(),
-                  style: TextStyle(
-                    color: Color(0xffFFFFFF),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
                     const Color(0xff0F4F9D),
@@ -166,22 +152,25 @@ class _HomePageState extends State<HomePage> {
                     const Size(350, 50),
                   ),
                 ),
+                child: Text(
+                  LocaleKeys.vxod.tr(),
+                  style: const TextStyle(
+                    color: Color(0xffFFFFFF),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 30,
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const RegisterPage(),
-                    ),
-                  );
+                Routes.instance.push(widget: RegisterPage(), context: context);
                 },
                 child: Text(
                   LocaleKeys.sozdat_novyi_akkaunt.tr(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(0xff0F4F9D),
                     fontSize: 16,
                     fontWeight: FontWeight.w400,

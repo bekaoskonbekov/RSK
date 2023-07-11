@@ -4,6 +4,7 @@ import 'package:rsk1/features/home/views/profile/list_of_branches_screen.dart';
 import 'package:rsk1/features/home/views/qr_code/qr_code_screen.dart';
 
 import '../../../../generated/locale_keys.g.dart';
+import '../../../../routes/router.dart';
 
 class MyTicketScreen extends StatelessWidget {
   const MyTicketScreen({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class MyTicketScreen extends StatelessWidget {
                         ),
                          Text(LocaleKeys.moi_talon.tr(),
                             style:
-                                TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+                                const TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
                       ],
                     ),
                     const SizedBox(height: 50),
@@ -49,10 +50,10 @@ class MyTicketScreen extends StatelessWidget {
                                   child:  Column(
                                     children: [
                                       Text(LocaleKeys.vash_kod.tr(),
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 15,
                                           )),
-                                      Text('1254',
+                                      const Text('1254',
                                           style: TextStyle(
                                               fontSize: 30,
                                               fontWeight: FontWeight.w500)),
@@ -65,29 +66,29 @@ class MyTicketScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(LocaleKeys.data_posesheniya.tr(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 13, color: Colors.grey)),
-                                  Text(
+                                  const Text(
                                     'Сегодня 14:55',
                                     style: TextStyle(
                                         fontSize: 15, fontWeight: FontWeight.w500),
                                   ),
-                                  SizedBox(height: 20),
-                                  Text('Услуга',
+                                  const SizedBox(height: 20),
+                                  const Text('Услуга',
                                       style: TextStyle(
                                           fontSize: 13, color: Colors.grey)),
                                   Text(
                                    LocaleKeys.otkryt_schet.tr(),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 15, fontWeight: FontWeight.w500),
                                   ),
-                                  SizedBox(height: 20),
+                                  const SizedBox(height: 20),
                                   Text(LocaleKeys.adres_filiala.tr(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 13, color: Colors.grey)),
                                   Text(
                                     LocaleKeys.g_bishkek.tr(),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 15, fontWeight: FontWeight.w500),
                                   ),
                                 ],
@@ -95,11 +96,10 @@ class MyTicketScreen extends StatelessWidget {
                             ],
                           ),
                         )),
-                    SizedBox(height: 60),
+                    const SizedBox(height: 60),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => QrCodeScreen()) );
+                         Routes.instance.push(widget: QrCodeScreen(), context: context);
                       },
                       child: Text(LocaleKeys.skanirovat_QR.tr(),
                           style: TextStyle(color: Colors.white)),
@@ -109,7 +109,7 @@ class MyTicketScreen extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10))),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
                         _showDialog(context);
@@ -142,7 +142,7 @@ class MyTicketScreen extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
             backgroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
             content: Builder(builder: (context) {
               return Container(
@@ -154,16 +154,16 @@ class MyTicketScreen extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (_)=> ListOfBranchesScreen()));
+                           Routes.instance.push(widget: ListOfBranchesScreen(), context: context);
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.highlight_off_outlined,
                           color: Colors.red,
                           size: 100,
                         ),
                       ),
                       Text(LocaleKeys.vy_otmenili_talon.tr(),
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w500))
                     ],
                   ),

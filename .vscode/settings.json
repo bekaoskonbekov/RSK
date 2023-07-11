@@ -1,0 +1,8 @@
+{
+    "files.autoSave": "afterDelay",
+    "dartImport.fixOnSave": true,
+    "dart.flutterGenerateLocalizationsOnSave": "manual",
+    "dart.hotReloadOnSave": "manual",
+    "dart.previewHotReloadOnSaveWatcher": true,
+    "errorLens.onSave": true
+}

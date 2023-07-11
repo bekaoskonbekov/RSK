@@ -73,10 +73,10 @@ class HomeScreen extends StatelessWidget {
                 images: 'assets/visa_icon.png',
                 numText: '+2400',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              CardContainerWidget(
+              const CardContainerWidget(
                 cardText: 'Mastercard',
                 images: 'assets/matercard.png',
                 numText: '+2400',

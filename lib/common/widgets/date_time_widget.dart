@@ -19,7 +19,7 @@ String _chosenDateTime = DateFormat().format(DateTime.now());
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           content: Builder(
             builder: (context) {

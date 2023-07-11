@@ -2,11 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rsk1/common/widgets/date_time_widget.dart';
-import 'package:rsk1/features/home/views/profile/my_ticket_screen.dart';
 import 'package:rsk1/common/widgets/radio_buttton_widget.dart';
+import 'package:rsk1/features/home/views/qr_code/qr_code_screen.dart';
 import 'package:rsk1/generated/locale_keys.g.dart';
 
 import '../../../../common/widgets/height_container_widget.dart';
+import '../../../../routes/router.dart';
 
 
 class ATMScreen extends StatefulWidget {
@@ -32,21 +33,32 @@ class _ATMScreenState extends State<ATMScreen> {
                   IconButton(
                       onPressed: () {
                         Navigator.pop(context);
-                      }, icon: Icon(Icons.arrow_back_ios)),
-                  SizedBox(
+                      }, icon: const Icon(Icons.arrow_back_ios)),
+                  const SizedBox(
                     width: 40,
                   ),
                   Text(
                     LocaleKeys.obslujivanie_fiz.tr(),
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                     maxLines: 2,
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
+           
+              const SizedBox(height: 10),
               HeightContainerWidget(
+                  height: 55,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [Text(LocaleKeys.data_posesheniya.tr(),), const DateTimeWidget()],
+                    ),
+                  )),const SizedBox(height: 10),
+                  HeightContainerWidget(
                   height: 46,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15),
@@ -58,31 +70,22 @@ class _ATMScreenState extends State<ATMScreen> {
                             onPressed: () {
                               _showServicesDialog(context);
                             },
-                            icon: Icon(CupertinoIcons.chevron_down)),
+                            icon: const Icon(CupertinoIcons.chevron_down)),
                       ],
                     ),
                   )),
-              SizedBox(height: 10),
-              HeightContainerWidget(
-                  height: 55,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 15, right: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text(LocaleKeys.data_posesheniya.tr(),), DateTimeWidget()],
-                    ),
-                  )),
-                  SizedBox(height: 440),
+              const SizedBox(height: 10),
+                  const SizedBox(height: 440),
               ElevatedButton(
                 onPressed: () {
-                 Navigator.push(context, MaterialPageRoute(builder: (_)=> MyTicketScreen()));
+                 Routes.instance.push(widget: QrCodeScreen(), context: context);
                 },
                 child: Text(
                  LocaleKeys.zanyat_ochered.tr(),
-                  style: TextStyle(fontSize: 15, color: Colors.white),
+                  style: const TextStyle(fontSize: 15, color: Colors.white),
                 ),
                 style: ElevatedButton.styleFrom(
-                    minimumSize: Size(345, 40),
+                    minimumSize: const Size(345, 40),
                     primary: Colors.blue,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
@@ -101,7 +104,7 @@ class _ATMScreenState extends State<ATMScreen> {
       builder: (BuildContext context) {
         return AlertDialog(
             backgroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
             content: Builder(builder: (context) {
               return Container(
@@ -117,13 +120,13 @@ class _ATMScreenState extends State<ATMScreen> {
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               CupertinoIcons.chevron_up,
                             )),
                       ],
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 4),
+                      padding: const EdgeInsets.only(top: 4),
                       child: HeightContainerWidget(
                         height: 46,
                         child: Padding(
@@ -136,14 +139,14 @@ class _ATMScreenState extends State<ATMScreen> {
                                   onPressed: () {
                                     _showDateAndTimeDialog(context);
                                   },
-                                  icon: Icon(CupertinoIcons.chevron_right))
+                                  icon: const Icon(CupertinoIcons.chevron_right))
                             ],
                           ),
                         ),
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         top: 4,
                       ),
                       child: HeightContainerWidget(
@@ -156,14 +159,14 @@ class _ATMScreenState extends State<ATMScreen> {
                               Text(LocaleKeys.vyboruslug.tr(),),
                               IconButton(
                                   onPressed: () {},
-                                  icon: Icon(CupertinoIcons.chevron_right))
+                                  icon: const Icon(CupertinoIcons.chevron_right))
                             ],
                           ),
                         ),
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         top: 4,
                       ),
                       child: HeightContainerWidget(
@@ -176,14 +179,14 @@ class _ATMScreenState extends State<ATMScreen> {
                               Text(LocaleKeys.vyboruslug.tr(),),
                               IconButton(
                                   onPressed: () {},
-                                  icon: Icon(CupertinoIcons.chevron_right))
+                                  icon: const Icon(CupertinoIcons.chevron_right))
                             ],
                           ),
                         ),
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         top: 4,
                       ),
                       child: HeightContainerWidget(
@@ -196,14 +199,14 @@ class _ATMScreenState extends State<ATMScreen> {
                               Text(LocaleKeys.vyboruslug.tr(),),
                               IconButton(
                                   onPressed: () {},
-                                  icon: Icon(CupertinoIcons.chevron_right))
+                                  icon: const Icon(CupertinoIcons.chevron_right))
                             ],
                           ),
                         ),
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         top: 4,
                       ),
                       child: HeightContainerWidget(
@@ -216,7 +219,7 @@ class _ATMScreenState extends State<ATMScreen> {
                               Text(LocaleKeys.vyboruslug.tr(),),
                               IconButton(
                                   onPressed: () {},
-                                  icon: Icon(CupertinoIcons.chevron_right))
+                                  icon: const Icon(CupertinoIcons.chevron_right))
                             ],
                           ),
                         ),
@@ -237,7 +240,7 @@ class _ATMScreenState extends State<ATMScreen> {
       builder: (BuildContext context) {
         return AlertDialog(
             backgroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
             content: Builder(builder: (context) {
               return Container(
@@ -252,16 +255,16 @@ class _ATMScreenState extends State<ATMScreen> {
                         'assets/image 10.png',
                         color: Colors.blue,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             LocaleKeys.g_bishkek.tr(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w500),
                           ),
-                          Text(
+                          const Text(
                             'Центр денежных переводов',
                             style: TextStyle(fontSize: 14, color: Colors.grey),
                           ),
@@ -274,7 +277,7 @@ class _ATMScreenState extends State<ATMScreen> {
                                     color: Colors.green,
                                     borderRadius: BorderRadius.circular(50)),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
                               Text(LocaleKeys.otkryto.tr(),),

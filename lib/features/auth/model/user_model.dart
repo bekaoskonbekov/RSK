@@ -1,32 +1,37 @@
-class User {
-  String? password;
-  String? email;
-  String? firstName;
-  String? lastName;
-  String? JwtTokens;
-
-  User(
-      {this.password,
-      this.email,
-      this.firstName,
-      this.lastName,
-      this.JwtTokens});
-
-  User.fromJson(Map<String, dynamic> json) {
-    password = json['password'];
-    email = json['email'];
-    firstName = json['first_name'];
-    lastName = json['last_name'];
-    JwtTokens = json['token'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['password'] = this.password;
-    data['email'] = this.email;
-    data['first_name'] = this.firstName;
-    data['last_name'] = this.lastName;
-    data['token'] = this.JwtTokens;
-    return data;
-  }
+class AuthArgs {
+  final String email;
+  final String password;
+  String ? access;
+  String ? refresh;
+  AuthArgs({required this.email, required this.password});
 }
+
+
+class AuthValues {
+
+  final String email;
+  final String firstName;
+  final String lastName;
+  final String position;
+  final String accessLevel;
+  final String windowNumber;
+  
+  AuthValues(
+      {
+      required this.email,
+      required this.firstName,
+      required this.lastName,
+      required this.position,
+      required this.accessLevel,
+      required this.windowNumber});
+
+  AuthValues.fromJson(Map<String, dynamic> json)
+      : 
+        email = json['email'] ?? '',
+        firstName = json['firstName'] ?? '',
+        lastName = json['lastName'] ?? '',
+        position = json['position'] ?? '',
+        accessLevel = json['accessLevel'] ?? '',
+        windowNumber = json['windowNumber'] ?? '';
+}
+

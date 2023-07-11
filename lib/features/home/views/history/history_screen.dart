@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:rsk1/generated/locale_keys.g.dart';
 
 class AttendanceScreen extends StatefulWidget {
-  AttendanceScreen();
+  const AttendanceScreen({super.key});
 
   @override
   _AttendanceScreenState createState() => _AttendanceScreenState();
 }
 
 class _AttendanceScreenState extends State<AttendanceScreen> {
-  static var countdownDuration1 = Duration(minutes: 10);
-  Duration duration1 = Duration();
+  static var countdownDuration1 = const Duration(minutes: 10);
+  Duration duration1 = const Duration();
   Timer? timer;
   Timer? timer1;
   bool countDown = true;
@@ -21,8 +21,8 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
 
   @override
   void initState() {
-    var mints1;
-    var secs1;
+    int mints1;
+    int secs1;
     mints1 = int.parse("30");
     secs1 = int.parse("00");
     countdownDuration1 = Duration(minutes: mints1, seconds: secs1);
@@ -42,7 +42,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
             child: Center(
               child: Column(
                 children: [
-                  SizedBox(height: 100),
+                  const SizedBox(height: 100),
                   Container(
                     width: 353,
                     height: 394,
@@ -57,12 +57,12 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(LocaleKeys.vash_talon.tr(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Color(0xff000000),
                               fontSize: 20,
                             )
                             ),
-                        Text(
+                        const Text(
                           'A102',
                           style: TextStyle(
                             color: Color(0xff000000),
@@ -70,14 +70,14 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         SizedBox(
                           height: 160,
                           child: Stack(
                             children: [
-                              Center(
+                              const Center(
                                 child: SizedBox(
                                   height: 160,
                                   width: 160,
@@ -96,8 +96,9 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 80,),
-                  ElevatedButton(onPressed: (){}, child: Text(LocaleKeys.pokinut.tr()),
+                  const SizedBox(height: 80,),
+                  ElevatedButton(onPressed: (){}, 
+                  child: Text(LocaleKeys.pokinut.tr()),
                   style: ButtonStyle(
                     
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
@@ -105,12 +106,12 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
-                        side: BorderSide(color: Colors.blue),
+                        side: const BorderSide(color: Colors.blue),
                         
                       ),
                       
                     ),
-                    minimumSize: MaterialStateProperty.all<Size>(Size(double.infinity, 50)),
+                    minimumSize: MaterialStateProperty.all<Size>(const Size(double.infinity, 50)),
                   )
                   ),
                 ],
@@ -141,11 +142,11 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   }
 
   void startTimer1() {
-    timer = Timer.periodic(Duration(seconds: 1), (_) => addTime1());
+    timer = Timer.periodic(const Duration(seconds: 1), (_) => addTime1());
   }
 
   void addTime1() {
-    final addSeconds = 1;
+    const addSeconds = 1;
     setState(() {
       final seconds = duration1.inSeconds - addSeconds;
       if (seconds < 0) {
@@ -164,7 +165,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       buildTimeCard(
         time: minutes,
       ),
-      Text(
+      const Text(
         ':',
         style: TextStyle(
             fontWeight: FontWeight.bold, color: Colors.black, fontSize: 50),
@@ -181,7 +182,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       Center(
         child: Text(
           time,
-          style: TextStyle(
+          style: const TextStyle(
               fontWeight: FontWeight.bold, color: Colors.black, fontSize: 50),
         ),
       );
