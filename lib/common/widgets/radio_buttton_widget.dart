@@ -55,7 +55,7 @@ class RadioButtonWidget extends State {
                 children: [
                   Container(
                       height: 70,
-                      width: 50,
+                      width: 45,
                       decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 214, 214, 214),
                           borderRadius: BorderRadius.circular(10)),
@@ -70,7 +70,7 @@ class RadioButtonWidget extends State {
                       )),
                   Container(
                       height: 70,
-                      width: 50,
+                      width: 45,
                       decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 214, 214, 214),
                           borderRadius: BorderRadius.circular(10)),
@@ -85,7 +85,7 @@ class RadioButtonWidget extends State {
                       )),
                   Container(
                       height: 70,
-                      width: 50,
+                      width: 45,
                       decoration: BoxDecoration(
                           color: Color.fromARGB(255, 214, 214, 214),
                           borderRadius: BorderRadius.circular(10)),
@@ -100,7 +100,7 @@ class RadioButtonWidget extends State {
                       )),
                   Container(
                       height: 70,
-                      width: 50,
+                      width: 45,
                       decoration: BoxDecoration(
                           color: Color.fromARGB(255, 214, 214, 214),
                           borderRadius: BorderRadius.circular(10)),
@@ -115,7 +115,7 @@ class RadioButtonWidget extends State {
                       )),
                   Container(
                       height: 70,
-                      width: 50,
+                      width: 45,
                       decoration: BoxDecoration(
                           color: Color.fromARGB(255, 214, 214, 214),
                           borderRadius: BorderRadius.circular(10)),

@@ -29,14 +29,13 @@ class _ATMScreenState extends State<ATMScreen> {
           child: Column(
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
                       onPressed: () {
                         Navigator.pop(context);
                       }, icon: const Icon(Icons.arrow_back_ios)),
-                  const SizedBox(
-                    width: 40,
-                  ),
+                  
                   Text(
                     LocaleKeys.obslujivanie_fiz.tr(),
                     style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
@@ -44,9 +43,7 @@ class _ATMScreenState extends State<ATMScreen> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 10,
-              ),
+           
            
               const SizedBox(height: 10),
               HeightContainerWidget(

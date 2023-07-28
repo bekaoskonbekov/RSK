@@ -1,9 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:grock/grock.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:rsk1/common/widgets/custom_bottom_nav_bar.dart';
 import 'package:rsk1/features/auth/views/send_pin_code_screen.dart';
 import 'package:rsk1/generated/locale_keys.g.dart';
 import '../../../common/widgets/custom_textfield.dart';
@@ -19,30 +17,42 @@ class RegisterPage extends ConsumerStatefulWidget {
 }
 
 class _RegisterPageState extends ConsumerState<RegisterPage> {
+  final _signUpFormKey = GlobalKey<FormState>();
+  // final AuthService authService = AuthService();
+  UserModel? currentUser = UserModel();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  final _signInFormKey = GlobalKey<FormState>();
+  final TextEditingController _firstNameController = TextEditingController();
+
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _phoneController.dispose();
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  void signUpUser() {
+    ref.read(authControllerProvider).signUpUser(
+          context: context,
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+          firstName: _firstNameController.text.trim(),
+          lastName: _lastNameController.text.trim(),
+          password_confirm: _confirmPasswordController.text.trim(),
+        );
+  }
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
-    final TextEditingController _emailController = TextEditingController();
-    final TextEditingController _passwordController = TextEditingController();
-    ref.listen(authErrorMessageProvider, (prev, next) {
-      if (next.isNotEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(next),
-          ),
-        );
-      } else {
-        _emailController.text = '';
-        _passwordController.text = '';
-      }
-    });
-
+  Widget build(BuildContext context) {
     return DefaultTabController(
-      
         length: 2,
         child: Scaffold(
           appBar: AppBar(
@@ -100,15 +110,14 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                         const SizedBox(height: 60),
                         ElevatedButton(
                           onPressed: () {
-                            Routes.instance.push(widget: SendPinCodeScreen(), context: context);
+                            Routes.instance.push(
+                                widget: SendPinCodeScreen(), context: context);
                           },
                           child: const Text('Войти',
                               style:
                                   TextStyle(fontSize: 18, color: Colors.white)),
                           style: ElevatedButton.styleFrom(
-                              primary: _signInFormKey == true
-                                  ? Colors.blueGrey
-                                  : Colors.blue,
+                              primary: Colors.blueGrey,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
@@ -119,41 +128,42 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                     Container(
                       padding: const EdgeInsets.all(8),
                       child: Form(
-                        key: _signInFormKey,
+                        key: _signUpFormKey,
                         child: Column(
                           children: [
                             CustomTextField(
+                              controller: _firstNameController,
+                              hintText: 'First Name',
+                            ),
+                            CustomTextField(
+                              controller: _lastNameController,
+                              hintText: 'Last Name',
+                            ),
+                            CustomTextField(
                               controller: _emailController,
                               hintText: 'Логин',
-                              
                             ),
                             const SizedBox(height: 10),
                             CustomTextField(
                               controller: _passwordController,
                               hintText: 'Password',
                             ),
+                            CustomTextField(
+                              controller: _confirmPasswordController,
+                              hintText: 'Confirm Password',
+                            ),
                             const SizedBox(height: 40),
                             ElevatedButton(
                               onPressed: () async {
-                                if (_emailController.text.isNotEmpty &&
-                                    _passwordController.text.isNotEmpty) {
-                                  final authArgs = AuthArgs(
-                                    email: _emailController.text.trim(),
-                                    password: _passwordController.text.trim(),
-                                  );
-                                  ref.read(authLoginProvider(authArgs));
-                                  final isAuthenticated =
-                                      ref.read(getIsAuthenticatedProvider);
-                                  if (isAuthenticated.value.isNotEmpty) {
-                                     Routes.instance.push(widget: CustomBottomBar(), context: context);
-                                  }
+                                if (_signUpFormKey.currentState!.validate()) {
+                                  signUpUser();
                                 }
                               },
-                              child: const Text('Войти',
+                              child: const Text('Register',
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.white)),
                               style: ElevatedButton.styleFrom(
-                                  primary: _signInFormKey == true
+                                  primary: _signUpFormKey == true
                                       ? Colors.blueGrey
                                       : Colors.blue,
                                   shape: RoundedRectangleBorder(

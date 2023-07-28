@@ -1,89 +1,70 @@
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rsk1/features/auth/views/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/user_model.dart';
 import '../services/auth_service.dart';
 
-// ignore: constant_identifier_names
-const IS_AUTHENTICATED_KEY = 'IS_AUTHENTICATED_KEY';
-// ignore: constant_identifier_names
-const AUTHENTICATED_USER_EMAIL_KEY = 'AUTHENTICATED_USER_EMAIL_KEY';
-
-final sharedPrefProvider = Provider((_) async {
-  return await SharedPreferences.getInstance();
+final authControllerProvider = Provider((ref) {
+  final authService = ref.watch(authServiceProvider);
+  return AuthController(authService: authService, ref: ref);
 });
 
-final setAuthStateProvider = StateProvider<AuthResponse?>(
-  (ref) => null,
-);
-
-final setIsAuthenticatedProvider = StateProvider.family<void, bool>(
-  (ref, isAuth) async {
-    final prefs = await ref.watch(sharedPrefProvider);
-    ref.watch(setAuthStateProvider);
-    prefs.setBool(
-      IS_AUTHENTICATED_KEY,
-      isAuth,
-    );
+final authControllerGetUsetDetails = FutureProvider(
+  (ref) {
+    final authController = ref.watch(authControllerProvider);
   },
 );
 
-final setAuthenticatedUserProvider = StateProvider.family<void, String>(
-  (ref, email) async {
-    final prefs = await ref.watch(sharedPrefProvider);
-    ref.watch(setAuthStateProvider);
-    prefs.setString(
-      AUTHENTICATED_USER_EMAIL_KEY,
-      email,
-    );
-  },
-);
+class AuthController {
+  final AuthService authService;
+  final ProviderRef ref;
 
-final getIsAuthenticatedProvider = FutureProvider<bool>(
-  (ref) async {
-    final prefs = await ref.watch(sharedPrefProvider);
-    ref.watch(setAuthStateProvider);
-    return prefs.getBool(IS_AUTHENTICATED_KEY) ?? false;
-  },
-);
+  AuthController({required this.authService, required this.ref});
 
-final getAuthenticatedUserProvider = FutureProvider<String>(
-  (ref) async {
-    final prefs = await ref.watch(sharedPrefProvider);
-    ref.watch(setAuthStateProvider);
-    return prefs.getString(AUTHENTICATED_USER_EMAIL_KEY) ?? '';
-  },
-);
+  void signUpUser({
+    required BuildContext context,
+    required String email,
+    required String password,
+    required String firstName,
+    required String lastName,
+    required String password_confirm,
 
+  }) {
+    authService.signUpUser(
+        context: context,
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        password_confirm: password_confirm
 
+       );
+  }
 
+  Future<UserModel> signInUser({
+    required BuildContext context,
+    required String email,
+    required String password,
+  }) {
+    return authService.signInUser(
+        context: context, email: email, password: password);
+  }
 
-final authenticationHandlerProvider = StateProvider<AuthenticationHandler>(
-  (_) => AuthenticationHandler(),
-);
+  void logout({
+    required BuildContext context,
+  }) async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    await sp.setString('x-auth-token', '');
+    await sp.setString('user-id', '');
 
-final authLoginProvider = FutureProvider.family<bool, AuthArgs>(
-  (ref, authArgs) async {
-    return Future.delayed(const Duration(seconds: 2), () async {
-      final authResponse = await ref.watch(authenticationHandlerProvider).login(
-            authArgs,
-          );
-      final isAuthenticated = authResponse.statusCode == 200;
-      if (isAuthenticated) {
-        ref.read(setAuthStateProvider.notifier).state = authResponse;
-        ref.read(setIsAuthenticatedProvider(isAuthenticated));
-        ref.read(setAuthenticatedUserProvider(authResponse.authValues.email));
-      } else {
-        ref.read(authErrorMessageProvider.notifier).state =
-            'Error occurred while login with code: ${authResponse.statusCode}';
-      }
-
-      return isAuthenticated;
-    });
-  },
-);
-
-final authErrorMessageProvider = StateProvider<String>(
-  (_) => '',
-);
+    // ignore: use_build_context_synchronously
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const LoginScreen(),
+        ),
+        (route) => false);
+  }
+}

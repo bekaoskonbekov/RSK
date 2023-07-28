@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rsk1/features/auth/views/welcome.dart';
+import 'package:rsk1/features/auth/views/login_screen.dart';
 
 import '../../../routes/router.dart';
 
@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Future.delayed(const Duration(seconds: 2), () {
-       Routes.instance.push(widget: HomePage(), context: context);
+       Routes.instance.push(widget: LoginScreen(), context: context);
     });
   }
 

@@ -1,67 +1,99 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
+import 'dart:developer';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../common/utilty.dart';
 import '../model/user_model.dart';
+final authServiceProvider = Provider((ref) {
+  return AuthService();
+});
 
-class AuthResponse {
-  AuthResponse({required this.authValues, required this.statusCode});
-  final AuthValues authValues;
-  final int statusCode;
-}
+class AuthService {
+  UserModel currentUser = UserModel();
+  void signUpUser({
+    required BuildContext context,
+    required String email,
+    required String password,
+    required String firstName,
+    required String lastName,
+    required String password_confirm,
+  }) async {
+    try {
+      Map<String, dynamic> user = {
+        "fullname": firstName,
+        "lastname": lastName,
+        "email": email,
+        "password": password,
+        "password_confirm": password_confirm,
+      };
+      http.Response response = await http.post(
+        Uri.parse("https://34.28.165.38/ru/client/register/"),
+        body: jsonEncode(user),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+          'charset': 'UTF-8',
+        },
+      );
+      // ignore: use_build_context_synchronously
+      httpErrorHandle(
+          response: response,
+          context: context,
+          onSuccessMessage:
+              'SignUp Successfull.Now, Login with same credentials.!!',
+          onfailureMessage:
+              'SignUp Failed !! There exists a user with same credentials.');
+    } on Exception catch (e) {
+      log(e.toString());
 
-class AuthenticationHandler {
-  late AuthValues authValues = AuthValues(
-    email: '',
-    firstName: '',
-    lastName: '',
-    position: '',
-    accessLevel: '',
-    windowNumber: '',
-  );
-
-  Future<AuthResponse> login(AuthArgs args) async {
-    final response = await http.post(
-      Uri.parse('https://34.28.165.38/ru/client/login/'),
-      body: {
-        'email': args.email,
-        'password': args.password,
-        'access': args.access ?? '',
-        'refresh': args.refresh ?? '',
-      },
-    );
-    var data = jsonDecode(response.body);
-    authValues = AuthValues.fromJson(data);
-    print(data);
-    print('Status code: ${response.statusCode}');
-    // return response.statusCode;
-    return AuthResponse(
-      authValues: authValues,
-      statusCode: response.statusCode,
-    );
-  }
-
-  Future<AuthResponse> refresh(AuthArgs args) async {
-    final response = await http.post(
-      Uri.parse('https://34.28.165.38/ru/client/refresh/'),
-      body: {
-        'refresh': args.refresh ?? '',
-        'access': args.access ?? '',
-      },
-    );
-    var data = jsonDecode(response.body);
-    if (response.statusCode == 200) {
-      authValues = AuthValues.fromJson(data);
-      print(data);
-      print('Status code: ${response.statusCode}');
+      showSnackBar(context, e.toString());
     }
-    return AuthResponse(
-      authValues: authValues,
-      statusCode: response.statusCode,
-    );
+  }
+
+  Future<UserModel> signInUser({
+    required BuildContext context,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      Map<String, dynamic> user = {
+        "email": email,
+        "password": password,
+      };
+      http.Response response = await http.post(
+        Uri.parse("https://34.28.165.38/ru/client/login/"),
+        body: jsonEncode(user),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+          'charset': 'UTF-8',
+        },
+      );
+      var recvdata = jsonDecode(response.body);
+      // ignore: use_build_context_synchronously
+      httpErrorHandle(
+        response: response,
+        context: context,
+        onSuccess: () async {
+          currentUser = UserModel.fromJson(recvdata['data']);
+          showSnackBar(context, 'Successfully LoggedIn !!');
+          SharedPreferences sp = await SharedPreferences.getInstance();
+          await sp.setString('x-auth-token', currentUser.refresh ?? '');
+          await sp.setString('user-id', currentUser.userid ?? '');
+        },
+        onfailure: () {
+          currentUser.userid = null;
+        },
+      );
+    } on Exception catch (e) {
+      log(e.toString());
+
+      showSnackBar(context, e.toString());
+    }
+    return currentUser;
   }
 }
-
 
 
 

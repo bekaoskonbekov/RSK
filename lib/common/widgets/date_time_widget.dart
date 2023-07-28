@@ -1,6 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class DateTimeWidget extends StatefulWidget {
   const DateTimeWidget({Key? key}) : super(key: key);

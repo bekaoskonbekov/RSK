@@ -4,20 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:rsk1/features/home/views/profile/atm_screen.dart';
 
  
+import '../../features/home/models/branch_model.dart';
 import '../../generated/locale_keys.g.dart';
 import '../../routes/router.dart';
 import 'height_container_widget.dart';
 
 class ListViewBuilderWidget extends StatelessWidget {
+  final List<BrancheModel> branchItems;
   const ListViewBuilderWidget({
-    super.key,
+    super.key, required this.branchItems,
   });
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
-      itemCount: 3,
+      itemCount:  branchItems.length,
       itemBuilder: (BuildContext context, int index) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 20),
@@ -36,7 +38,7 @@ class ListViewBuilderWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            LocaleKeys.g_bishkek.tr(),
+                            branchItems[index].address.toString(),
                             style: const TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w500),
                           ),

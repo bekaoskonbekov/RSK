@@ -2,13 +2,11 @@ import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:rsk1/features/home/views/home/home_screen.dart';
-import 'package:rsk1/features/home/views/profile/profile_screen.dart';
 import 'package:rsk1/generated/locale_keys.g.dart';
 import 'package:rsk1/routes/router.dart';
 
 class AttendanceScreen extends StatefulWidget {
-  const AttendanceScreen();
+  const AttendanceScreen({super.key});
 
 
   @override
@@ -106,7 +104,6 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                     Routes.instance.pushAndRemoveUntil(widget: widget, context: context);
                   },
                   style: ButtonStyle(
-                    
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
                     foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(

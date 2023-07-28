@@ -1,37 +1,65 @@
-class AuthArgs {
-  final String email;
-  final String password;
-  String ? access;
-  String ? refresh;
-  AuthArgs({required this.email, required this.password});
+class UserModel {
+  UserModel({
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.password,
+    this.refresh,
+    this.id,
+    this.userid,
+    this.password_confirm
+  });
+
+  String? firstName;
+  String? lastName;
+  String? email;
+  String? password;
+  String? refresh;
+  String? id;
+  String? userid;
+  String? password_confirm;
+
+  factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        email: json["email"],
+        password: json["password"],
+        refresh: json["refresh"],
+        id: json["_id"],
+        userid: json["userid"],
+        password_confirm: json["password_confirm"]
+      );
+
+  Map<String, dynamic> toMap() => {
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email,
+        "password": password,
+        "refresh": refresh,
+        "_id": id,
+        "userid": userid,
+        "password_confirm": password_confirm
+      };
+
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        email: json["email"],
+        password: json["password"],
+        refresh: json["refresh"],
+        id: json["_id"],
+        userid: json["userid"],
+        password_confirm: json["password_confirm"]
+      );
+
+  Map<String, dynamic> toJson() => {
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email,
+        "password": password,
+        "refresh": refresh,
+        "_id": id,
+        "userid": userid,
+        "password_confirm": password_confirm
+      };
 }
-
-
-class AuthValues {
-
-  final String email;
-  final String firstName;
-  final String lastName;
-  final String position;
-  final String accessLevel;
-  final String windowNumber;
-  
-  AuthValues(
-      {
-      required this.email,
-      required this.firstName,
-      required this.lastName,
-      required this.position,
-      required this.accessLevel,
-      required this.windowNumber});
-
-  AuthValues.fromJson(Map<String, dynamic> json)
-      : 
-        email = json['email'] ?? '',
-        firstName = json['firstName'] ?? '',
-        lastName = json['lastName'] ?? '',
-        position = json['position'] ?? '',
-        accessLevel = json['accessLevel'] ?? '',
-        windowNumber = json['windowNumber'] ?? '';
-}
-

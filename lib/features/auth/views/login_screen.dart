@@ -1,22 +1,30 @@
+import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rsk1/common/widgets/custom_bottom_nav_bar.dart';
-import 'package:rsk1/features/auth/views/register_page.dart';
+import 'package:rsk1/features/auth/views/register_screen.dart';
+import '../../../common/widgets/custom_textfield.dart';
 import '../../../generated/locale_keys.g.dart';
 import '../../../routes/router.dart';
+import '../model/user_model.dart';
+import '../providers/auth_provider.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({
+class LoginScreen extends ConsumerStatefulWidget {
+  const LoginScreen({
     super.key,
   });
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
+  final _signInFormKey = GlobalKey<FormState>();
+  // final AuthService authService = AuthService();
+  UserModel? currentUser = UserModel();
   List<String> list = [
     'Русский',
     'English',
@@ -28,6 +36,33 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void signInUser() async {
+    currentUser = await ref.read(authControllerProvider).signInUser(
+          context: context,
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+    log(currentUser!.userid.toString());
+    if (currentUser!.userid != null) {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const CustomBottomBar(),
+          ),
+          (route) => false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,12 +71,11 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         backgroundColor: const Color(0xffFFFFFF),
         actions: <Widget>[
-           const Icon(
-              Icons.language,
-              color: Color(0xff000000),
-              size: 20,
-            ),
-           
+          const Icon(
+            Icons.language,
+            color: Color(0xff000000),
+            size: 20,
+          ),
           DropdownButton<String>(
             selectedItemBuilder: (context) {
               return list.map<Widget>((String item) {
@@ -132,12 +166,28 @@ class _HomePageState extends State<HomePage> {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              const SizedBox(
-                height: 250,
+              SizedBox(height: 30),
+              Form(
+                key: _signInFormKey,
+                child: Column(
+                  children: [
+                    CustomTextField(
+                      controller: _emailController,
+                      hintText: 'Логин',
+                    ),
+                    CustomTextField(
+                      controller: _passwordController,
+                      hintText: 'Password',
+                    ),
+                  ],
+                ),
               ),
+              SizedBox(height: 60),
               ElevatedButton(
                 onPressed: () {
-                  Routes.instance.push(widget: CustomBottomBar(), context: context);
+                  if (_signInFormKey.currentState!.validate()) {
+                              signInUser();
+                            }
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
@@ -166,7 +216,8 @@ class _HomePageState extends State<HomePage> {
               ),
               GestureDetector(
                 onTap: () {
-                Routes.instance.push(widget: RegisterPage(), context: context);
+                  Routes.instance
+                      .push(widget: RegisterPage(), context: context);
                 },
                 child: Text(
                   LocaleKeys.sozdat_novyi_akkaunt.tr(),
